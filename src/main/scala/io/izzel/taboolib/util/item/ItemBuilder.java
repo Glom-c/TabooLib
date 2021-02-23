@@ -30,7 +30,7 @@ import java.util.Objects;
 public class ItemBuilder {
 
     private final ItemStack itemStack;
-    private final ItemMeta itemMeta;
+    private ItemMeta itemMeta;
 
     public ItemBuilder(XMaterial material) {
         this(Objects.requireNonNull(material.parseItem(true)));
@@ -61,16 +61,19 @@ public class ItemBuilder {
 
     public ItemBuilder material(int id) {
         itemStack.setType(Items.asMaterial(String.valueOf(id)));
+        itemMeta = itemStack.getItemMeta();
         return this;
     }
 
     public ItemBuilder material(String material) {
         itemStack.setType(Material.getMaterial(material));
+        itemMeta = itemStack.getItemMeta();
         return this;
     }
 
     public ItemBuilder material(Material material) {
         itemStack.setType(material);
+        itemMeta = itemStack.getItemMeta();
         return this;
     }
 
